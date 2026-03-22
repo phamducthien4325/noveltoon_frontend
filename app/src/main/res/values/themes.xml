@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- Theme chính -->
+    <style name="Theme.Noveltoon" parent="android:Theme.Material.Light.NoActionBar" />
+
+    <!-- Splash Theme -->
+    <style name="Theme.Noveltoon.Splash" parent="Theme.SplashScreen">
+
+        <!-- Logo -->
+        <item name="windowSplashScreenAnimatedIcon">@drawable/splash</item>
+
+        <!-- Background -->
+        <item name="windowSplashScreenBackground">@color/splash_background</item>
+
+        <!-- Chuyển sang theme chính -->
+        <item name="postSplashScreenTheme">@style/Theme.Noveltoon</item>
+
+    </style>
+
+</resources>
