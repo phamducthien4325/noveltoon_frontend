@@ -1,22 +1,25 @@
 package com.example.noveltoon.di
 
-import com.example.noveltoon.data.remote.api.NovelApi
+import com.example.noveltoon.data.repository.HashtagRepositoryImpl
 import com.example.noveltoon.data.repository.NovelRepositoryImpl
+import com.example.noveltoon.domain.repository.HashtagRepository
 import com.example.noveltoon.domain.repository.NovelRepository
+import dagger.Binds
 import dagger.Module
-import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
 
 @Module
 @InstallIn(SingletonComponent::class)
-object RepositoryModule {
+abstract class RepositoryModule {
 
-    @Provides
-    fun provideNovelRepository(
-        api: NovelApi
-    ): NovelRepository {
-        return NovelRepositoryImpl(api)
-//        return FakeNovelRepository()
-    }
+    @Binds
+    abstract fun bindHashtagRepository(
+        impl: HashtagRepositoryImpl
+    ): HashtagRepository
+
+    @Binds
+    abstract fun bindNovelRepository(
+        impl: NovelRepositoryImpl
+    ): NovelRepository
 }
