@@ -16,8 +16,9 @@ import androidx.paging.compose.collectAsLazyPagingItems
 @Composable
 fun RecommendScreen(
     viewModel: RecommendViewModel = hiltViewModel(),
-    onNavigateToDetail: () -> Unit
+    onNavigateToDetail: (novelId: String) -> Unit
 ) {
+    val uiState by viewModel.uiState.collectAsState()
     val novels = viewModel.novels.collectAsLazyPagingItems()
 
     SuggestedNovelsSection(

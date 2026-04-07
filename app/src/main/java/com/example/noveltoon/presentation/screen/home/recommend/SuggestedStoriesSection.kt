@@ -32,7 +32,7 @@ import com.example.noveltoon.presentation.components.NovelItem
 @Composable
 fun SuggestedNovelsSection(
     novels: LazyPagingItems<Novel>,
-    onNavigateToDetail: () -> Unit,
+    onNavigateToDetail: (novelId: String) -> Unit,
     modifier: Modifier = Modifier
 ) {
 
@@ -88,7 +88,7 @@ fun SuggestedNovelsSection(
             val novel = novels[index]
 
             novel?.let {
-                NovelItem(it, onNavigateToDetail = onNavigateToDetail)
+                NovelItem(it, onNavigateToDetail = { onNavigateToDetail(novel.id) })
                 Spacer(modifier = Modifier.height(16.dp))
             }
         }
@@ -169,51 +169,3 @@ fun SuggestedNovelsSection(
         else -> {}
     }
 }
-
-// --- Header: Có Thể Bạn Sẽ Thích ---
-//        item {
-//            Row(
-//                modifier = Modifier.fillMaxWidth(),
-//                horizontalArrangement = Arrangement.SpaceBetween,
-//                verticalAlignment = Alignment.CenterVertically
-//            ) {
-//                Row(verticalAlignment = Alignment.CenterVertically) {
-//                    Icon(
-//                        imageVector = Icons.Default.Favorite,
-//                        contentDescription = null,
-//                        tint = Color(0xFFE91E63), // Màu hồng trái tim
-//                        modifier = Modifier.size(20.dp)
-//                    )
-//                    Spacer(modifier = Modifier.width(8.dp))
-//                    Text(
-//                        text = "Có Thể Bạn Sẽ Thích",
-//                        style = MaterialTheme.typography.titleMedium.copy(
-//                            fontWeight = FontWeight.Bold,
-//                            fontSize = 18.sp
-//                        )
-//                    )
-//                }
-//                Row(verticalAlignment = Alignment.CenterVertically) {
-//                    Text(
-//                        text = "Thêm",
-//                        color = Color.Gray,
-//                        fontSize = 14.sp
-//                    )
-//                    Icon(
-//                        imageVector = Icons.AutoMirrored.Filled.KeyboardArrowRight,
-//                        contentDescription = null,
-//                        tint = Color.Gray,
-//                        modifier = Modifier.size(18.dp)
-//                    )
-//                }
-//            }
-//
-//            Spacer(modifier = Modifier.height(16.dp))
-//        }
-//
-//        // --- List of Novels ---
-//        items(novels) { novel ->
-//            NovelItem(novel)
-//            Spacer(modifier = Modifier.height(16.dp))
-//        }
-//    }

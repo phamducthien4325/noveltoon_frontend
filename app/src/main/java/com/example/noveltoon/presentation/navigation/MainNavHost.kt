@@ -28,8 +28,8 @@ fun MainNavHost(
 
         composable(MainRoute.Home.route) {
             HomeScreen(
-                onNavigateToDetail = {
-                    navController.navigate(NovelRoute.NovelDetail.route)
+                onNavigateToDetail = { novelId ->
+                    navController.navigate(NovelRoute.NovelDetail.createRoute(novelId))
                 }
             )
         }

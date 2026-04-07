@@ -21,8 +21,6 @@ class NovelPagingSource(
 
             val response = api.getNovels(page, 20).data
 
-            Log.d("PagingDebug", "page=$page, items=${response.items.size}, totalPages=${response.totalPages}")
-
             LoadResult.Page(
                 data = response.items.map { it.toDomain() },
                 prevKey = if (page == 1) null else page - 1,
