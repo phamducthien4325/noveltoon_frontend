@@ -1,9 +1,13 @@
 package com.example.noveltoon.di
 
+import com.example.noveltoon.data.repository.AuthRepositoryImpl
 import com.example.noveltoon.data.repository.HashtagRepositoryImpl
 import com.example.noveltoon.data.repository.NovelRepositoryImpl
+import com.example.noveltoon.data.repository.UserRepositoryImpl
+import com.example.noveltoon.domain.repository.AuthRepository
 import com.example.noveltoon.domain.repository.HashtagRepository
 import com.example.noveltoon.domain.repository.NovelRepository
+import com.example.noveltoon.domain.repository.UserRepository
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn
@@ -22,4 +26,14 @@ abstract class RepositoryModule {
     abstract fun bindNovelRepository(
         impl: NovelRepositoryImpl
     ): NovelRepository
+
+    @Binds
+    abstract fun bindAuthRepository(
+        impl: AuthRepositoryImpl
+    ): AuthRepository
+
+    @Binds
+    abstract fun bindUserRepository(
+        impl: UserRepositoryImpl
+    ): UserRepository
 }

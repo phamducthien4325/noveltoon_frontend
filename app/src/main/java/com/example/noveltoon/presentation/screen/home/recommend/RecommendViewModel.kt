@@ -2,6 +2,7 @@ package com.example.noveltoon.presentation.screen.home.recommend
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import androidx.paging.cachedIn
 import com.example.noveltoon.domain.usecase.GetHashtagsUseCase
 import com.example.noveltoon.domain.usecase.GetNovelsUseCase
 import com.example.noveltoon.presentation.screen.hashtag.HashtagState
@@ -14,37 +15,8 @@ import javax.inject.Inject
 
 @HiltViewModel
 class RecommendViewModel @Inject constructor(
-    private val getNovelUseCase: GetNovelsUseCase
+    private val getNovelsUseCase: GetNovelsUseCase
 ) : ViewModel() {
-    private val _uiState = MutableStateFlow(RecommendState())
-
-    val uiState: StateFlow<RecommendState> = _uiState
-
-    fun loadNovels() {
-        viewModelScope.launch {
-
-            _uiState.update { it.copy(isLoading = true) }
-
-            try {
-
-                val novels = getNovelUseCase()
-
-                _uiState.update {
-                    it.copy(
-                        isLoading = false,
-                        novels = novels
-                    )
-                }
-
-            } catch (e: Exception) {
-
-                _uiState.update {
-                    it.copy(
-                        isLoading = false,
-                        error = e.message
-                    )
-                }
-            }
-        }
-    }
+    val novels = getNovelsUseCase()
+        .cachedIn(viewModelScope)
 }

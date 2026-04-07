@@ -5,5 +5,5 @@ data class PageResponseDto<DTO>(
     val page: Int,
     val size: Int,
     val totalElements: Int,
-    val totalPages: Int
+    val totalPages: Int,
 )

@@ -1,7 +1,5 @@
 package com.example.noveltoon.presentation.screen.main
 
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Home
 import androidx.compose.material3.Icon
 import androidx.compose.material3.NavigationBar
 import androidx.compose.material3.NavigationBarItem
@@ -9,7 +7,6 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.currentBackStackEntryAsState
-import com.example.noveltoon.presentation.navigation.route.MainRoute
 
 @Composable
 fun BottomBar(navController: NavHostController) {
@@ -25,8 +22,11 @@ fun BottomBar(navController: NavHostController) {
                 selected = selected,
                 onClick = {
                     navController.navigate(item.route) {
-                        popUpTo(navController.graph.startDestinationId)
+                        popUpTo(navController.graph.startDestinationId) {
+                            saveState = true
+                        }
                         launchSingleTop = true
+                        restoreState = true
                     }
                 },
                 icon = {

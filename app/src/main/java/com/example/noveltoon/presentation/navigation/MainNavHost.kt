@@ -1,23 +1,21 @@
-package com.example.noveltoon.presentation.navigation.graph
+package com.example.noveltoon.presentation.navigation
 
-import androidx.compose.foundation.layout.PaddingValues
-import androidx.compose.foundation.layout.padding
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
+import com.example.noveltoon.presentation.navigation.graph.novelGraph
 import com.example.noveltoon.presentation.navigation.route.MainRoute
+import com.example.noveltoon.presentation.navigation.route.NovelRoute
 import com.example.noveltoon.presentation.screen.follow.FollowScreen
 import com.example.noveltoon.presentation.screen.hashtag.HashtagScreen
 import com.example.noveltoon.presentation.screen.home.HomeScreen
 import com.example.noveltoon.presentation.screen.library.LibraryScreen
-import com.example.noveltoon.presentation.screen.main.MainScreen
 import com.example.noveltoon.presentation.screen.profile.ProfileScreen
 
 @Composable
-fun MainNavGraph(
+fun MainNavHost(
     navController: NavHostController,
     modifier: Modifier = Modifier
 ) {
@@ -29,7 +27,11 @@ fun MainNavGraph(
     ) {
 
         composable(MainRoute.Home.route) {
-            HomeScreen()
+            HomeScreen(
+                onNavigateToDetail = {
+                    navController.navigate(NovelRoute.NovelDetail.route)
+                }
+            )
         }
 
         composable(MainRoute.Hashtag.route) {
@@ -47,5 +49,7 @@ fun MainNavGraph(
         composable(MainRoute.Profile.route) {
             ProfileScreen()
         }
+
+        novelGraph(navController)
     }
 }

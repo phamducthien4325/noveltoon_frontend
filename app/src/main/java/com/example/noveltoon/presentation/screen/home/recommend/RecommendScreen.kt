@@ -11,24 +11,18 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.paging.compose.collectAsLazyPagingItems
 
 @Composable
 fun RecommendScreen(
-    viewModel: RecommendViewModel = hiltViewModel()
+    viewModel: RecommendViewModel = hiltViewModel(),
+    onNavigateToDetail: () -> Unit
 ) {
-    val state by viewModel.uiState.collectAsState()
+    val novels = viewModel.novels.collectAsLazyPagingItems()
 
-    LaunchedEffect(Unit) {
-        viewModel.loadNovels()
-    }
-
-    if (state.isLoading) {
-        CircularProgressIndicator()
-    }
-
-    state.error?.let {
-        Text("Error: $it")
-    }
-
-    SuggestedNovelsSection(state.novels)
+    SuggestedNovelsSection(
+        novels = novels,
+        onNavigateToDetail = onNavigateToDetail,
+        modifier = Modifier.fillMaxSize()
+    )
 }

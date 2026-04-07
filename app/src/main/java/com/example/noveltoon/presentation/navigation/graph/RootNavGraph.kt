@@ -5,7 +5,7 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.navigation
-import com.example.noveltoon.presentation.navigation.route.MainRoute
+import com.example.noveltoon.presentation.navigation.route.AuthRoute
 import com.example.noveltoon.presentation.navigation.route.RootRoute
 import com.example.noveltoon.presentation.screen.main.MainScreen
 
@@ -14,20 +14,19 @@ fun RootNavGraph(navController: NavHostController) {
 
     NavHost(
         navController = navController,
-        startDestination = RootRoute.MainGraph.route
+//        startDestination = RootRoute.MainGraph.route
+        startDestination = RootRoute.AuthGraph.route
     ) {
 
-        navigation(
-            route = RootRoute.MainGraph.route,
-            startDestination = MainRoute.Home.route
-            ) {
-            composable(MainRoute.Home.route) {
-                MainScreen()
-            }
+        composable(RootRoute.MainGraph.route) {
+            MainScreen()
         }
-//
-//        composable("login") {
-//            LoginScreen()
-//        }
+
+        navigation(
+            route = RootRoute.AuthGraph.route,
+            startDestination = AuthRoute.Login.route
+        ) {
+            authNavGraph(navController)
+        }
     }
 }

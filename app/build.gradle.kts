@@ -111,4 +111,7 @@ dependencies {
     implementation("androidx.datastore:datastore-preferences:1.0.0")
     implementation("androidx.core:core-splashscreen:1.0.1")
 
+    // Paging 3
+    implementation("androidx.paging:paging-runtime:3.3.0")
+    implementation("androidx.paging:paging-compose:3.3.0")
 }
