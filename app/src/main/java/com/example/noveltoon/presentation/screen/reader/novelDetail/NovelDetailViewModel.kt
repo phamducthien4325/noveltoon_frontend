@@ -1,4 +1,4 @@
-package com.example.noveltoon.presentation.screen.reader
+package com.example.noveltoon.presentation.screen.reader.novelDetail
 
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel

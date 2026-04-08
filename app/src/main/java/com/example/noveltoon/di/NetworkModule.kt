@@ -58,21 +58,6 @@ object NetworkModule {
             .build()
     }
 
-//    @AuthRetrofit
-//    @Provides
-//    @Singleton
-//    fun provideAuthRetrofit(): Retrofit {
-//
-//        val client = OkHttpClient.Builder()
-//            .build()   // không interceptor
-//
-//        return Retrofit.Builder()
-//            .baseUrl(BASE_URL)
-//            .client(client)
-//            .addConverterFactory(GsonConverterFactory.create())
-//            .build()
-//    }
-
     @Provides
     @Singleton
     fun provideNovelApi(retrofit: Retrofit): NovelApi {

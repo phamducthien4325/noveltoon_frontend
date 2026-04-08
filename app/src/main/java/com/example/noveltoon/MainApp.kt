@@ -3,13 +3,13 @@ package com.example.noveltoon
 import androidx.compose.runtime.Composable
 import androidx.navigation.compose.rememberNavController
 import com.example.noveltoon.core.ui.theme.AppTheme
-import com.example.noveltoon.presentation.navigation.AppNavHost
+import com.example.noveltoon.presentation.navigation.graph.RootNavHost
 
 @Composable
 fun MainApp() {
     val navController = rememberNavController()
 
     AppTheme {
-        AppNavHost(navController = navController)
+        RootNavHost(navController = navController)
     }
 }

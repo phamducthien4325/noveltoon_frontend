@@ -7,10 +7,9 @@ import androidx.navigation.compose.composable
 import androidx.navigation.navigation
 import com.example.noveltoon.presentation.navigation.route.AuthRoute
 import com.example.noveltoon.presentation.navigation.route.RootRoute
-import com.example.noveltoon.presentation.screen.main.MainScreen
 
 @Composable
-fun RootNavGraph(navController: NavHostController) {
+fun RootNavHost(navController: NavHostController) {
 
     NavHost(
         navController = navController,
@@ -19,7 +18,7 @@ fun RootNavGraph(navController: NavHostController) {
     ) {
 
         composable(RootRoute.MainGraph.route) {
-            MainScreen()
+            BottomNavHost(navController)
         }
 
         navigation(
@@ -28,5 +27,7 @@ fun RootNavGraph(navController: NavHostController) {
         ) {
             authNavGraph(navController)
         }
+
+        novelGraph(navController)
     }
 }
