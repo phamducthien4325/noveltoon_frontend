@@ -1,5 +1,6 @@
 package com.example.noveltoon.presentation.screen.reader.novelDetail
 
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -21,42 +22,16 @@ import com.example.noveltoon.domain.model.Chapter
 @Composable
 fun ChapterItem(
     chapter: Chapter,
-//    onNavigateToDetail: () -> Unit
+    onNavigateToChapterDetail: () -> Unit
 ) {
     Row(
         modifier = Modifier
             .fillMaxWidth()
             .height(120.dp)
-//            .clickable {
-//                onNavigateToDetail()
-//            }
+            .clickable {
+                onNavigateToChapterDetail()
+            }
     ) {
-        // Ảnh bìa truyện
-//        Box(
-//            modifier = Modifier
-//                .width(90.dp)
-//                .fillMaxHeight()
-//                .clip(RoundedCornerShape(8.dp))
-//                .background(Color.LightGray)
-//
-//        ) {
-//            // Thay bằng AsyncImage (Coil) nếu bạn load từ URL
-//            // Image(painter = ..., contentScale = ContentScale.Crop)
-//
-////            if (novel.isEnd) {
-////                Box(
-////                    modifier = Modifier
-////                        .background(Color(0xFFFFA500))
-////                        .padding(horizontal = 4.dp, vertical = 2.dp)
-////                ) {
-////                    Text("END", color = Color.White, fontSize = 10.sp, fontWeight = FontWeight.Bold)
-////                }
-////            }
-//        }
-
-//        Spacer(modifier = Modifier.width(12.dp))
-
-        // Thông tin truyện
         Column(
             modifier = Modifier.fillMaxHeight(),
             verticalArrangement = Arrangement.SpaceBetween
@@ -79,21 +54,6 @@ fun ChapterItem(
                     lineHeight = 18.sp
                 )
             }
-
-//            Row(verticalAlignment = Alignment.CenterVertically) {
-//                // Icon lửa hoặc biểu tượng view
-//                Text(
-//                    text = "🔥 ${novel.views}",
-//                    color = Color.Gray,
-//                    fontSize = 12.sp
-//                )
-//                Spacer(modifier = Modifier.width(12.dp))
-//                Text(
-//                    text = novel.category,
-//                    color = Color.Gray,
-//                    fontSize = 12.sp
-//                )
-//            }
         }
     }
 }

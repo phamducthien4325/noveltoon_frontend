@@ -12,6 +12,8 @@ import androidx.compose.material3.Button
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
@@ -23,9 +25,11 @@ import com.example.noveltoon.presentation.screen.reader.novelDetail.NovelDetailV
 @Composable
 fun NovelDetailScreen(
     modifier: Modifier = Modifier,
-    viewModel: NovelDetailViewModel = hiltViewModel()
+    viewModel: NovelDetailViewModel = hiltViewModel(),
+    onNavigateToChapterDetail: (novelId: String, chapterId: String) -> Unit
 ) {
     val chapters = viewModel.chapters.collectAsLazyPagingItems()
+    val uiState by viewModel.uiState.collectAsState()
 
     LazyColumn(
         modifier = modifier.padding(16.dp)
@@ -39,7 +43,12 @@ fun NovelDetailScreen(
             val chapter = chapters[index]
 
             chapter?.let {
-                ChapterItem(it)
+                ChapterItem(it) {
+                    onNavigateToChapterDetail(
+                        uiState.novelId,
+                        chapter.id
+                    )
+                }
                 Spacer(modifier = Modifier.height(16.dp))
             }
         }

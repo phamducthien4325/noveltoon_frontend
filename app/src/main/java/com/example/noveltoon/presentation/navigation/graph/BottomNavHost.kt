@@ -35,7 +35,7 @@ fun BottomNavHost(rootNavController: NavHostController) {
 
             composable(BottomNavRoute.Home.route) {
                 HomeScreen(
-                    onNavigateToDetail = { novelId ->
+                    onNavigateToNovelDetail = { novelId ->
                         rootNavController.navigate(NovelRoute.NovelDetail.createRoute(novelId))
                     }
                 )
