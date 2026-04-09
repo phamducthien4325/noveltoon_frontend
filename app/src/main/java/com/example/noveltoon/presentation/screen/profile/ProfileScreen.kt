@@ -47,6 +47,7 @@ import com.example.noveltoon.presentation.components.UserAvatar
 @Composable
 fun ProfileScreen(
     viewModel: ProfileViewModel = hiltViewModel(),
+    onNavigateToMyNovel: () -> Unit
 ) {
 
     LazyColumn(
@@ -62,8 +63,14 @@ fun ProfileScreen(
         // 2. Stats: Xu, Điểm, Phiếu
         item { UserStatsRow() }
 
-        // 3. Quick Actions: Trở thành tác giả, Phúc lợi...
-//            item { QuickActionsGrid() }
+        item {
+            Button(
+                modifier = Modifier,
+                onClick = onNavigateToMyNovel
+            ) {
+                Text("Sáng tác truyện")
+            }
+        }
 
         // 4. List Options
         item {

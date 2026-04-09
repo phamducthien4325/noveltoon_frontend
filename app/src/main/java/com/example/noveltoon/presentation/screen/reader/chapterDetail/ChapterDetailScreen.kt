@@ -16,8 +16,8 @@ fun ChapterDetailScreen(
     viewModel: ChapterDetailViewModel = hiltViewModel()
 ) {
     Box(
-    modifier = Modifier.fillMaxSize(),
-    contentAlignment = Alignment.Center
+        modifier = Modifier.fillMaxSize(),
+        contentAlignment = Alignment.Center
     ) {
         val uiState by viewModel.uiState.collectAsState()
         Text("Chapter Detail Screen ${uiState.chapterId} of novelId: ${uiState.novelId}")
