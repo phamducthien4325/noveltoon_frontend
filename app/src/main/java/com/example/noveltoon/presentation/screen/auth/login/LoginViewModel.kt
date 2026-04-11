@@ -77,7 +77,7 @@ class LoginViewModel @Inject constructor(
         }
     }
 
-    fun static_login() {
+    fun staticLogin() {
         updateEmail("test@gmail.com")
         updatePassword("123456")
         val email = _uiState.value.email

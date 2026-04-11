@@ -7,3 +7,8 @@ data class NovelDto(
     val status: String?,
     val views: Long
 )
+
+data class CreateNovelRequest(
+    val title: String,
+    val description: String?
+)

@@ -100,7 +100,7 @@ fun LoginScreen(
             text = "Đăng nhập bằng Google",
             containerColor = MaterialTheme.colorScheme.primary,
             icon = Icons.Default.AccountCircle, // Thay bằng icon Google thực tế
-            onClick = viewModel::static_login
+            onClick = viewModel::staticLogin
         )
 
         Spacer(modifier = Modifier.height(16.dp))
@@ -110,7 +110,7 @@ fun LoginScreen(
             text = "Đăng nhập bằng Facebook",
             containerColor = MaterialTheme.colorScheme.tertiary,
             icon = Icons.Default.Face, // Thay bằng icon Facebook thực tế
-            onClick = viewModel::static_login
+            onClick = viewModel::staticLogin
         )
 
         Spacer(modifier = Modifier.height(24.dp))

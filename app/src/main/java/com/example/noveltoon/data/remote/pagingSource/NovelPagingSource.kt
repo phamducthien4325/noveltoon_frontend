@@ -39,3 +39,36 @@ class NovelPagingSource(
         return state.anchorPosition
     }
 }
+
+class MyNovelsPagingSource(
+    private val api: NovelApi
+) : PagingSource<Int, Novel>() {
+
+    override suspend fun load(
+        params: LoadParams<Int>
+    ): LoadResult<Int, Novel> {
+
+        return try {
+
+            val page = params.key ?: 1
+
+            val response = api.getMyNovels(page, 20).data
+
+            LoadResult.Page(
+                data = response.items.map { it.toDomain() },
+                prevKey = if (page == 1) null else page - 1,
+                nextKey = if (response.page < response.totalPages) page + 1 else null
+            )
+
+        } catch (e: Exception) {
+
+            LoadResult.Error(e)
+        }
+    }
+
+    override fun getRefreshKey(
+        state: PagingState<Int, Novel>
+    ): Int? {
+        return state.anchorPosition
+    }
+}
