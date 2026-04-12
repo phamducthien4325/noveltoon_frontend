@@ -9,7 +9,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.example.noveltoon.presentation.navigation.route.BottomNavRoute
-import com.example.noveltoon.presentation.navigation.route.MyNovelRoute
+import com.example.noveltoon.presentation.navigation.route.MyNovelsRoute
 import com.example.noveltoon.presentation.navigation.route.NovelRoute
 import com.example.noveltoon.presentation.screen.follow.FollowScreen
 import com.example.noveltoon.presentation.screen.hashtag.HashtagScreen
@@ -56,7 +56,7 @@ fun BottomNavHost(rootNavController: NavHostController) {
 
             composable(BottomNavRoute.Profile.route) {
                 ProfileScreen(
-                    onNavigateToMyNovel = { rootNavController.navigate(MyNovelRoute.MyNovels.route) }
+                    onNavigateToMyNovel = { rootNavController.navigate(MyNovelsRoute.MyNovels.route) }
                 )
             }
 

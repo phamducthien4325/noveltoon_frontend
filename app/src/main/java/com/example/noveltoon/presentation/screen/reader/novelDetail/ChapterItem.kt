@@ -45,14 +45,14 @@ fun ChapterItem(
                     overflow = TextOverflow.Ellipsis
                 )
                 Spacer(modifier = Modifier.height(4.dp))
-                Text(
-                    text = chapter.chapterNumber.toString(),
-                    color = Color.Gray,
-                    fontSize = 13.sp,
-                    maxLines = 2,
-                    overflow = TextOverflow.Ellipsis,
-                    lineHeight = 18.sp
-                )
+//                Text(
+//                    text = chapter.chapterNumber.toString(),
+//                    color = Color.Gray,
+//                    fontSize = 13.sp,
+//                    maxLines = 2,
+//                    overflow = TextOverflow.Ellipsis,
+//                    lineHeight = 18.sp
+//                )
             }
         }
     }

@@ -7,20 +7,16 @@ import com.example.noveltoon.core.utils.pagingFlow
 import com.example.noveltoon.domain.usecase.GetMyNovelsUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.ExperimentalCoroutinesApi
-import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.asSharedFlow
 import kotlinx.coroutines.flow.asStateFlow
-import kotlinx.coroutines.flow.flatMapLatest
-import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class MyNovelViewModel @Inject constructor(
+class MyNovelsViewModel @Inject constructor(
     private val getMyNovelsUseCase: GetMyNovelsUseCase
 ) : ViewModel() {
 
-    private val _uiState = MutableStateFlow(MyNovelState())
+    private val _uiState = MutableStateFlow(MyNovelsState())
 
     val uiState = _uiState.asStateFlow()
 

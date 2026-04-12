@@ -30,6 +30,6 @@ fun RootNavHost(navController: NavHostController) {
 
         novelGraph(navController)
 
-        myNovelGraph(navController)
+        myNovelsGraph(navController)
     }
 }

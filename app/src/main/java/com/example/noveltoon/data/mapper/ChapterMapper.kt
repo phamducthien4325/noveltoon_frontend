@@ -9,7 +9,6 @@ fun ChapterDto.toDomain(): Chapter {
     return Chapter(
         id = id,
         title = title,
-        chapterNumber = chapterNumber,
         content = content
     )
 }

@@ -39,12 +39,12 @@ import androidx.paging.compose.collectAsLazyPagingItems
 import com.example.noveltoon.presentation.components.NovelItem
 
 @Composable
-fun MyNovelScreen(
+fun MyNovelsScreen(
     modifier: Modifier = Modifier,
-    viewModel: MyNovelViewModel = hiltViewModel(),
+    viewModel: MyNovelsViewModel = hiltViewModel(),
     savedStateHandle: SavedStateHandle?,
     onNavigateToCreateNovel: () -> Unit,
-    onNavigateToCreateChapter: () -> Unit
+    onNavigateToMyNovelsDetail: (novelId: String) -> Unit
 ) {
     val myNovels = viewModel.myNovels.collectAsLazyPagingItems()
     val uiState by viewModel.uiState.collectAsState()
@@ -120,11 +120,11 @@ fun MyNovelScreen(
                 key = { index -> myNovels[index]?.id ?: index }
             ) { index ->
 
-                val chapter = myNovels[index]
+                val novel = myNovels[index]
 
-                chapter?.let {
+                novel?.let {
                     NovelItem(it) {
-                        onNavigateToCreateChapter()
+                        onNavigateToMyNovelsDetail(novel.id)
                     }
                     Spacer(modifier = Modifier.height(16.dp))
                 }
