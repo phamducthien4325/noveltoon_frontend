@@ -6,7 +6,7 @@ import com.example.noveltoon.domain.model.Chapter
 import com.example.noveltoon.domain.repository.ChapterRepository
 import javax.inject.Inject
 
-class CreateChapterUseCase @Inject constructor(
+class CreateDraftUseCase @Inject constructor(
     private val repository: ChapterRepository
 ) {
     suspend operator fun invoke(
@@ -26,6 +26,6 @@ class CreateChapterUseCase @Inject constructor(
 //            throw AppException.Validation("Content phải trên 700 từ")
 //        }
 
-        return repository.createChapter(CreateDraftRequest(novelId))
+        return repository.createDraft(CreateDraftRequest(novelId))
     }
 }

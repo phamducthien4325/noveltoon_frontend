@@ -5,7 +5,10 @@ sealed class MyNovelsRoute(val route: String) {
 
     object CreateNovels : MyNovelsRoute("createNovel")
 
-    object EditingChapter: MyNovelsRoute("editingChapter")
+    object EditingChapter: MyNovelsRoute("editingChapter/{novelId}/{chapterId}") {
+        fun createRoute(novelId: String, chapterId: String) =
+            "editingChapter/$novelId/$chapterId"
+    }
 
     object MyNovelDetail : MyNovelsRoute("editing/{novelId}") {
         fun createRoute(novelId: String) = "editing/$novelId"

@@ -9,3 +9,8 @@ data class ChapterDto(
 data class CreateDraftRequest(
     val novelId: String,
 )
+
+data class UpdateDraftRequest(
+    val title: String,
+    val content: String,
+)

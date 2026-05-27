@@ -2,6 +2,7 @@ package com.example.noveltoon.domain.repository
 
 import androidx.paging.PagingData
 import com.example.noveltoon.data.remote.dto.CreateDraftRequest
+import com.example.noveltoon.data.remote.dto.UpdateDraftRequest
 import com.example.noveltoon.domain.model.Chapter
 import kotlinx.coroutines.flow.Flow
 
@@ -10,7 +11,12 @@ interface ChapterRepository {
         novelId: String
     ): Flow<PagingData<Chapter>>
 
-    suspend fun createChapter(
+    suspend fun createDraft(
         request: CreateDraftRequest
+    ): Chapter
+
+    suspend fun updateDraft(
+        chapterId: String,
+        request: UpdateDraftRequest
     ): Chapter
 }

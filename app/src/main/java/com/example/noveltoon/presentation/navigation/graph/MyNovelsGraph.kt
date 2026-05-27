@@ -42,7 +42,17 @@ fun NavGraphBuilder.myNovelsGraph(
         )
     }
 
-    composable(route = MyNovelsRoute.EditingChapter.route) {
+    composable(
+        route = MyNovelsRoute.EditingChapter.route,
+        arguments = listOf(
+            navArgument("novelId") {
+                type = NavType.StringType
+            },
+            navArgument("chapterId") {
+                type = NavType.StringType
+            }
+        )
+    ) {
         EditingChapterScreen()
     }
 

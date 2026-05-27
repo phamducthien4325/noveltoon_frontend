@@ -43,7 +43,6 @@ import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.paging.LoadState
 import androidx.paging.compose.collectAsLazyPagingItems
-import com.example.noveltoon.presentation.screen.myNovel.creatNovel.CreateNovelScreenEvent
 import com.example.noveltoon.presentation.screen.reader.novelDetail.ChapterItem
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -79,7 +78,7 @@ fun MyNovelDetailScreen(
         },
         bottomBar = {
             Button(
-                onClick = { viewModel.createChapter() },
+                onClick = { viewModel.createDraft() },
                 modifier = Modifier
                     .fillMaxWidth()
                     .padding(16.dp)

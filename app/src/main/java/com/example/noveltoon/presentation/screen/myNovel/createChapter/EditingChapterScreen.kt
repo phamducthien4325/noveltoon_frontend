@@ -25,30 +25,31 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
 import androidx.compose.material3.TextFieldDefaults
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.hilt.navigation.compose.hiltViewModel
+import com.example.noveltoon.core.helper.countWords
 
 @Composable
 fun EditingChapterScreen(
-    onBack: () -> Unit = {},
-    onNext: () -> Unit = {}
+    modifier: Modifier = Modifier,
+    viewModel: EditingChapterViewModel = hiltViewModel()
 ) {
-    var content by remember { mutableStateOf("") }
+    val uiState by viewModel.uiState.collectAsState()
 
     Scaffold(
         topBar = {
             CreateNovelTopBar(
-                titleLength = content.length,
-                onBack = onBack,
-                onNext = onNext
+                chapterLength = countWords(uiState.chapterContent),
+                onBack = {},
+                onNext = {}
             )
         },
         bottomBar = {
@@ -62,23 +63,49 @@ fun EditingChapterScreen(
                 .background(Color(0xFFF5F5F5))
         ) {
 
-            Text(
-                text = "Nhập tên chương",
-                fontSize = 20.sp,
-                fontWeight = FontWeight.Bold,
+//            Text(
+//                text = uiState.chapterTitle.ifEmpty { "Nhập tên chương" },
+//                fontSize = 20.sp,
+//                fontWeight = FontWeight.Bold,
+//                modifier = Modifier
+//                    .padding(horizontal = 16.dp, vertical = 12.dp)
+//            )
+
+            TextField(
+                value = uiState.chapterTitle,
+                onValueChange = { viewModel.updateChapterTitle(it) },
+                placeholder = {
+                    Text(
+                        text = "Nhập tên chương",
+                        fontSize = 20.sp,
+                        fontWeight = FontWeight.Bold,
+                        modifier = Modifier
+                    )
+                },
+                textStyle = TextStyle(
+                    fontSize = 20.sp,
+                    fontWeight = FontWeight.Bold
+                ),
                 modifier = Modifier
-                    .padding(horizontal = 16.dp, vertical = 12.dp)
+                    .fillMaxWidth()
+                    .padding(horizontal = 16.dp, vertical = 12.dp),
+                colors = TextFieldDefaults.colors(
+                    focusedContainerColor = Color.Transparent,
+                    unfocusedContainerColor = Color.Transparent,
+                    disabledContainerColor = Color.Transparent,
+                    focusedIndicatorColor = Color.Transparent,
+                    unfocusedIndicatorColor = Color.Transparent
+                )
             )
 
             TextField(
-                value = content,
-                onValueChange = { content = it },
+                value = uiState.chapterContent,
+                onValueChange = { viewModel.updateChapterContent(it) },
                 placeholder = {
                     Text("Số từ trong một chương đề xuất 1000-2000 từ.")
                 },
                 modifier = Modifier
-                    .fillMaxSize()
-                    .padding(horizontal = 16.dp),
+                    .fillMaxSize(),
                 colors = TextFieldDefaults.colors(
                     focusedContainerColor = Color.Transparent,
                     unfocusedContainerColor = Color.Transparent,
@@ -93,7 +120,7 @@ fun EditingChapterScreen(
 
 @Composable
 fun CreateNovelTopBar(
-    titleLength: Int,
+    chapterLength: Int,
     onBack: () -> Unit,
     onNext: () -> Unit
 ) {
@@ -110,7 +137,7 @@ fun CreateNovelTopBar(
         }
 
         Text(
-            text = "$titleLength/700 chữ",
+            text = "$chapterLength/700 chữ",
             modifier = Modifier.weight(1f),
             color = Color.Gray
         )

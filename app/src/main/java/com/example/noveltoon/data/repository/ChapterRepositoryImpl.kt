@@ -7,6 +7,7 @@ import com.example.noveltoon.core.utils.safeApiCall
 import com.example.noveltoon.data.mapper.toDomain
 import com.example.noveltoon.data.remote.api.ChapterApi
 import com.example.noveltoon.data.remote.dto.CreateDraftRequest
+import com.example.noveltoon.data.remote.dto.UpdateDraftRequest
 import com.example.noveltoon.data.remote.pagingSource.ChapterPagingSource
 import com.example.noveltoon.domain.model.Chapter
 import com.example.noveltoon.domain.repository.ChapterRepository
@@ -31,7 +32,11 @@ class ChapterRepositoryImpl @Inject constructor(
         ).flow
     }
 
-    override suspend fun createChapter(request: CreateDraftRequest): Chapter {
+    override suspend fun createDraft(request: CreateDraftRequest): Chapter {
         return safeApiCall { api.createDraft(request).data.toDomain() }
+    }
+
+    override suspend fun updateDraft(chapterId: String, request: UpdateDraftRequest): Chapter {
+        return safeApiCall { api.updateDraft(chapterId, request).data.toDomain() }
     }
 }

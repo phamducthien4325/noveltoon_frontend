@@ -6,9 +6,8 @@ import androidx.lifecycle.viewModelScope
 import androidx.paging.cachedIn
 import com.example.noveltoon.core.utils.ActionState
 import com.example.noveltoon.core.utils.runUseCase
-import com.example.noveltoon.domain.usecase.CreateChapterUseCase
+import com.example.noveltoon.domain.usecase.CreateDraftUseCase
 import com.example.noveltoon.domain.usecase.GetChaptersUseCase
-import com.example.noveltoon.presentation.screen.myNovel.creatNovel.CreateNovelScreenEvent
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -22,7 +21,7 @@ import javax.inject.Inject
 class MyNovelDetailViewModel @Inject constructor(
     savedStateHandle: SavedStateHandle,
     private val getChapterUseCase: GetChaptersUseCase,
-    private val createChapterUseCase: CreateChapterUseCase
+    private val createDraftUseCase: CreateDraftUseCase
 ) : ViewModel() {
 
     private val _uiState = MutableStateFlow(MyNovelDetailState())
@@ -42,14 +41,14 @@ class MyNovelDetailViewModel @Inject constructor(
     val chapters = getChapterUseCase(novelId)
         .cachedIn(viewModelScope)
 
-    fun createChapter() {
+    fun createDraft() {
         viewModelScope.launch {
             _uiState.update {
                 it.copy(createChapterState = ActionState.Loading)
             }
 
             val result = runUseCase {
-                createChapterUseCase(
+                createDraftUseCase(
                     novelId = novelId
                 )
             }
