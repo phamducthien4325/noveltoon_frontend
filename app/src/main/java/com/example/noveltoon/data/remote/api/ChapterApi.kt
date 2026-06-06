@@ -30,4 +30,9 @@ interface ChapterApi {
         @Path("chapterId") chapterId: String,
         @Body request: UpdateDraftRequest
     ): ResponseDto<ChapterDto>
+
+    @GET("chapters/{chapterId}")
+    suspend fun getChapter(
+        @Path("chapterId") chapterId: String
+    ): ResponseDto<ChapterDto>
 }

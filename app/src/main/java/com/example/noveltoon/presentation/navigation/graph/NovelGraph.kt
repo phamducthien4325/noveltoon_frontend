@@ -36,5 +36,11 @@ fun NavGraphBuilder.novelGraph(
                 type = NavType.StringType
             }
         )
-    ) { ChapterDetailScreen() }
+    ) {
+        ChapterDetailScreen(
+            onNavigateBack = {
+                navController.popBackStack()
+            }
+        )
+    }
 }

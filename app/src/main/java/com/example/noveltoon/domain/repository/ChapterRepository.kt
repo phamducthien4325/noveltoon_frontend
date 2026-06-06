@@ -19,4 +19,8 @@ interface ChapterRepository {
         chapterId: String,
         request: UpdateDraftRequest
     ): Chapter
+
+    suspend fun getChapter(
+        chapterId: String
+    ): Chapter
 }

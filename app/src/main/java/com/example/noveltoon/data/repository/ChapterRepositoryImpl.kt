@@ -39,4 +39,8 @@ class ChapterRepositoryImpl @Inject constructor(
     override suspend fun updateDraft(chapterId: String, request: UpdateDraftRequest): Chapter {
         return safeApiCall { api.updateDraft(chapterId, request).data.toDomain() }
     }
+
+    override suspend fun getChapter(chapterId: String): Chapter {
+        return safeApiCall { api.getChapter(chapterId).data.toDomain() }
+    }
 }
