@@ -125,19 +125,3 @@ Nếu build bằng Command Line, bạn có thể truyền trực tiếp:
       ```bash
       ./gradlew installDebug
       ```
-
----
-
-## Đóng góp phát triển (Contributing)
-
-Mọi ý kiến đóng góp, báo lỗi (Bug Report) hoặc đề xuất tính năng mới (Feature Request) đều được chào đón! Vui lòng tuân thủ quy trình sau:
-
-1.  Fork dự án này.
-2.  Tạo một nhánh (branch) tính năng mới (`git checkout -b feature/tinh-nang-moi`).
-3.  Commit các thay đổi của bạn kèm thông điệp rõ ràng (`git commit -m 'Thêm tính năng đọc truyện offline'`).
-4.  Push lên nhánh của bạn (`git push origin feature/tinh-nang-moi`).
-5.  Tạo một **Pull Request** gửi tới nhánh chính của dự án này.
-
----
-
-Chúc bạn có những trải nghiệm đọc truyện tuyệt vời cùng Noveltoon!
