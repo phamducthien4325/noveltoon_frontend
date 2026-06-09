@@ -27,4 +27,16 @@ interface NovelApi {
     suspend fun createNovel(
         @Body request: CreateNovelRequest
     ): ResponseDto<NovelDto>
+
+    @GET("novels/followed")
+    suspend fun getFollowedNovels(
+        @Query("page") page: Int,
+        @Query("size") limit: Int
+    ): ResponseDto<PageResponseDto<NovelDto>>
+
+    @GET("novels/history")
+    suspend fun getReadingHistory(
+        @Query("page") page: Int,
+        @Query("size") limit: Int
+    ): ResponseDto<PageResponseDto<NovelDto>>
 }

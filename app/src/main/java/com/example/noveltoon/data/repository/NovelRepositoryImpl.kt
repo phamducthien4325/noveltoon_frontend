@@ -5,8 +5,10 @@ import com.example.noveltoon.core.utils.safeApiCall
 import com.example.noveltoon.data.mapper.toDomain
 import com.example.noveltoon.data.remote.api.NovelApi
 import com.example.noveltoon.data.remote.dto.CreateNovelRequest
+import com.example.noveltoon.data.remote.pagingSource.FollowedNovelsPagingSource
 import com.example.noveltoon.data.remote.pagingSource.MyNovelsPagingSource
 import com.example.noveltoon.data.remote.pagingSource.NovelPagingSource
+import com.example.noveltoon.data.remote.pagingSource.ReadingHistoryPagingSource
 import com.example.noveltoon.domain.model.Novel
 import com.example.noveltoon.domain.repository.NovelRepository
 import javax.inject.Inject
@@ -27,5 +29,13 @@ class NovelRepositoryImpl @Inject constructor(
         return safeApiCall {
             api.createNovel(request).data.toDomain()
         }
+    }
+
+    override fun getFollowedNovels(): PagingSource<Int, Novel> {
+        return FollowedNovelsPagingSource(api)
+    }
+
+    override fun getReadingHistory(): PagingSource<Int, Novel> {
+        return ReadingHistoryPagingSource(api)
     }
 }

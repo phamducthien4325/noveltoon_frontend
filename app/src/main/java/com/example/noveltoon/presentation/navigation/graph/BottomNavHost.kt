@@ -51,7 +51,11 @@ fun BottomNavHost(rootNavController: NavHostController) {
             }
 
             composable(BottomNavRoute.Library.route) {
-                LibraryScreen()
+                LibraryScreen(
+                    onNovelClick = { novelId ->
+                        rootNavController.navigate(NovelRoute.NovelDetail.createRoute(novelId))
+                    }
+                )
             }
 
             composable(BottomNavRoute.Profile.route) {

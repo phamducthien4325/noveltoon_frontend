@@ -11,4 +11,8 @@ interface NovelRepository {
     fun getMyNovels(): PagingSource<Int, Novel>
 
     suspend fun createNovel(request: CreateNovelRequest): Novel
+
+    fun getFollowedNovels(): PagingSource<Int, Novel>
+
+    fun getReadingHistory(): PagingSource<Int, Novel>
 }
